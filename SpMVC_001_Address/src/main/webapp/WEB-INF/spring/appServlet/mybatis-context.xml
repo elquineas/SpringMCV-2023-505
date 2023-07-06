@@ -35,6 +35,19 @@
 	</bean>
 	
 	<!-- 
+	     transactionManager 객체와 연계하여 Annotation 방식으로 트랜잭션을 관리
+	     
+	     만약 transactionManager 의 id가 transactionManager 일 경우 
+	     transaction-manager="transactionManager" 속성은 생략 가능하다
+	     <tx:annotation-driven />
+	 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 트랜잭션 수행 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"/>
+	</bean>
+	<!-- 
 	아래 코드에서 System.in 을 constructor-arg 라고한다.
 	Scanner scan = new Scanner(System.in);
 	

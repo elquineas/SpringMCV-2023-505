@@ -3,6 +3,7 @@ package com.elquineas.address.service.impl;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.elquineas.address.model.UserDto;
 import com.elquineas.address.service.UserService;
@@ -14,7 +15,8 @@ public class UserServiceImplV1 implements UserService{
 	public UserDto findById(String id) {
 		return null;
 	}
-
+	
+	@Transactional
 	@Override
 	public String userLogin(UserDto uDto) {
 		String username = uDto.getUsername();
