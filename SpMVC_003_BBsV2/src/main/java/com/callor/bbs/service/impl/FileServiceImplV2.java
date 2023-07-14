@@ -1,6 +1,7 @@
 package com.callor.bbs.service.impl;
 
 import java.io.File;
+import java.util.UUID;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -51,7 +52,13 @@ public class FileServiceImplV2 extends FileServiceImplV1 {
 			path.mkdirs();
 		}
 		
+		//실제 업로드될 파일이름
 		String fileName = file.getOriginalFilename();
+		
+		//0000-0000-0000
+		String strUUID = UUID.randomUUID().toString();
+
+		fileName = String.format("%s-%s",strUUID, fileName);
 		File upLoadFile = new File(fileUpPath, fileName);
 		file.transferTo(upLoadFile);
 		return fileName;

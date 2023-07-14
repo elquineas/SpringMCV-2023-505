@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.callor.bbs.config.QualifierConfig;
 import com.callor.bbs.dao.BBsDao;
 import com.callor.bbs.models.BBsDto;
+import com.callor.bbs.models.UserDto;
 import com.callor.bbs.service.FileService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,20 +56,25 @@ public class HomeController {
 	}
 
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
-	public String insert(@RequestParam(value="b_username") String username, @RequestParam(value="b_file") MultipartFile b_file, Model model) {
+	public String insert(BBsDto bbsDto, @RequestParam(value="b_file") MultipartFile b_file, Model model) {
 //		String b_file
-		log.debug("사용자 이름 : {}", username);
+		log.debug("사용자 이름 : {}", bbsDto.getB_username());
 		log.debug(b_file.getOriginalFilename());
 		
-		String fileName = "";
+		String fileName = null;
 		try {
 			fileName = fileService.fileUp(b_file);
+			bbsDto.setB_image(fileName);
+			int result = bbsDao.insert(bbsDto);
+			return "redirect:/";
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			log.debug("파일을 업로드 할수 없음 오류 발생!");
+			return "redirect:/insert?error=FILE_UP_ERROR";
 		}
 		
-		model.addAttribute("FILE_NAME", fileName);
-		return "input";
+//		model.addAttribute("FILE_NAME", fileName);
+//		return "input";
 	}
 	
 	

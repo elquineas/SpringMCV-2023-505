@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.elquineas.car.dao.CarDao">
+	<insert id="insertDrive">
+		INSERT INTO tbl_car(
+					c_division,
+					c_sDate,
+					c_eDate,
+					c_sTime,
+					c_eTime,
+					c_sDistance,	
+					c_eDistance,	
+					c_place,
+					c_cost
+			   )
+		VALUES(
+				#{c_division},
+				DATE_FORMAT(NOW(),'%Y-%m-%d'),
+				#{c_eDate},
+				DATE_FORMAT(NOW(),'%H:%i:%S'),
+				#{c_eTime},
+				#{c_sDistance},	
+				#{c_eDistance},	
+				#{c_place},
+				#{c_cost}
+			   )
+	</insert>
+	<update id="updateDrive">
+		UPDATE tbl_car
+	       SET c_eDate 		= DATE_FORMAT(NOW(),'%Y-%m-%d'),
+	           c_eTime 		= DATE_FORMAT(NOW(),'%H:%i:%S'),
+	           c_eDistance 	= #{c_eDistance},
+			   c_place 		= #{c_place},
+			   c_cost 		= #{c_cost}
+	     WHERE c_seq 		= #{c_seq};
+	</update>
+
+</mapper> 

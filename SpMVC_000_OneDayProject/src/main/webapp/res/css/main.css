@@ -1,0 +1,120 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+html {
+  width: 100vw;
+}
+body {
+  width: 100%;
+}
+
+header,
+section {
+  margin: 20px auto;
+  width: 100%;
+}
+
+header {
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+section table.main.insert {
+  width: 80%;
+  height: 50px;
+  margin: 20px auto;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+section table.main.insert tr {
+  border: 1px solid blue;
+}
+
+section table.main.insert tr td {
+  height: 35px;
+  /* border: 1px solid red; */
+  text-align: center;
+}
+section table.main.insert tr td:nth-of-type(1) {
+  width: 18%;
+}
+section table.main.insert tr td:nth-of-type(2) {
+  width: 25%;
+}
+section table.main.insert tr td:nth-of-type(3) {
+  width: 14%;
+}
+section table.main.insert tr td:nth-of-type(4) {
+  width: 25%;
+}
+section table.main.insert tr td:nth-of-type(5) {
+  width: 18%;
+}
+
+section table.main.insert tr td input {
+  height: 35px;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+button.main.save {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  background-color: skyblue;
+  color: white;
+  cursor: pointer;
+}
+
+button.main.save:hover {
+  background-color: lightgray;
+  color: black;
+  box-shadow: 2px 2px 2px black;
+}
+
+section table.main.list {
+  width: 95%;
+  margin: 0 auto;
+  border-spacing: 0px;
+  border-collapse: separate;
+}
+
+section table.main.list tr th {
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #ddd;
+  background-color: #eee;
+  text-align: center;
+  padding: 5px;
+}
+
+section table.main.list tr td {
+  border-bottom: 1px solid #ddd;
+  /* border: 1px solid red; */
+  text-align: center;
+  padding: 5px;
+}
+section table.main.list tr td:nth-of-type(3),
+section table.main.list tr td:nth-of-type(4),
+section table.main.list tr td:nth-of-type(5),
+section table.main.list tr td:nth-of-type(6),
+section table.main.list tr td:nth-of-type(7),
+section table.main.list tr td:nth-of-type(8),
+section table.main.list tr td:nth-of-type(10) {
+  width: 140px;
+}
+section table.main.list tr:last-of-type td {
+  border-bottom: 1px solid #aaa;
+  text-align: center;
+}
