@@ -18,12 +18,16 @@
 </insert>
 ```
 
+- oracle DB 에서는 AUTO INCREMENT 를 사용하지 않고
+  SEQUENCE 를 사용하기 때문에, 먼저 SEQUENCE 를 사용하여 
+  새로운 키를 만들고(SEQ_BBS.NEXTVAL) 그 키값을 PK 칼럼(b_seq)에 세팅하는 절차가 필요하다
 ```xml
 <insert id="insert" useGeneratedKeys="true" keyProperty="b_seq">
    	   <selectKey databaseId="oracle" keyColumn="b_seq" keyProperty="b_seq">
 	   		SELECT SEQ_BBS.NEXTVAL FROM DUAL
 	   </selectKey>
 </insert>
-
-
 ```
+
+- `useGeneratedKey` 속성이 부착된 INSERT 가 실행되면, INSERT 가 실행된 후에 Dto 객체의 PK 칼럼에 새로운
+  Key 값이 담겨있게 된다.
