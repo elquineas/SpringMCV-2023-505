@@ -1,32 +1,95 @@
-const INPUT_INDEX = {
-  C_CARNUM: 0,
-  C_QTY: 1,
-  C_USERNAME: 2,
-  C_SDATE: 3,
-  C_STIME: 4,
+const ERROR_MESSAGE = {
+  CARNUM: "* 차량번호를 입력하세요",
+  QTY: "* 업무구분을 입력하세요",
+  USERNAME: "* 사용자를 입력하세요",
+  SDATE: "* 시작일자를 입력하세요",
+  STIME: "* 시작시간을 입력하세요",
+  SKM: "* 출발 Km를 입력하세요",
 };
 document.addEventListener("DOMContentLoaded", () => {
-  const formEnterHandler = (e) => {
-    const target = e.target;
-    //  화면에서 Enter(13) 가 눌리고
-    // focus() 대상이 INPUT tag 이면
-    if (e.keyCode === 13 && target.tagName === "INPUT") {
-      // focus() 가 있는 input tag 의 name 속성을 getter
-      // 대문자로 변경하라
-      const input_name = target["name"].toUpperCase();
-      // focus() 가 있는 input tag 가 몇번째 tag 이냐
-      const input_index_num = INPUT_INDEX[input_name];
+  const input_carnum = document.querySelector("#c_carnum");
+  const input_qty = document.querySelector("#c_qty");
+  const input_username = document.querySelector("#c_username");
+  const input_sdate = document.querySelector("#c_sdate");
+  const input_stime = document.querySelector("#c_stime");
+  const input_skm = document.querySelector("#c_skm");
 
-      // 현재 focus() 가 있는 input tag 가 마지막 input 이
-      // 아니면
-      if (input_index_num < Object.keys(INPUT_INDEX).length - 1) {
-        // 다음번 input 으로 focus를 이동하라
-        document
-          .querySelectorAll("input")
-          [input_index_num + 1].focus();
-      }
+  const btn_save = document.querySelector("#btn_save");
+
+  const error_err_box_list = document.querySelectorAll("div.error");
+  const error_carnum = document.querySelector("div.error.c_carnum");
+  const error_qty = document.querySelector("div.error.c_qty");
+  const error_username = document.querySelector("div.error.c_username");
+  const error_sdate = document.querySelector("div.error.c_sdate");
+  const error_stime = document.querySelector("div.error.c_stime");
+  const error_skm = document.querySelector("div.error.c_skm");
+
+  const err_clear = () => {
+    for (let box of error_err_box_list) {
+      box?.classList.remove("on");
     }
   };
-  document.addEventListener("keydown", formEnterHandler);
-  document.querySelector("input[name='c_carnum']").focus();
+
+  input_carnum?.select();
+  input_carnum?.addEventListener("blur", async () => {
+    err_clear();
+    if (!err_massage(input_carnum, error_carnum, ERROR_MESSAGE.CARNUM)) {
+      return false;
+    }
+    const carnum = input_carnum.value;
+    const res = await fetch(`${rootPath}/car_check?carnum=${carnum}`);
+    console.log();
+    const json = await res.json();
+    if (json.c_carnum === "NOT") {
+      error_carnum.classList.add("on");
+      error_carnum.innerHTML = "* 등록되지 않은 차량번호 입니다.";
+      input_skm.value = "";
+    } else {
+      input_skm.value = json.c_ekm;
+    }
+  });
+  input_qty?.addEventListener("blur", () => {
+    err_clear();
+    if (!err_massage(input_qty, error_qty, ERROR_MESSAGE.QTY)) {
+      return false;
+    }
+  });
+  input_username?.addEventListener("blur", () => {
+    err_clear();
+    if (!err_massage(input_username, error_username, ERROR_MESSAGE.USERNAME)) {
+      return false;
+    }
+  });
+  input_sdate?.addEventListener("blur", () => {
+    err_clear();
+    if (!err_massage(input_sdate, error_sdate, ERROR_MESSAGE.SDATE)) {
+      return false;
+    }
+  });
+  input_stime?.addEventListener("blur", () => {
+    err_clear();
+    if (!err_massage(input_stime, error_stime, ERROR_MESSAGE.STIME)) {
+      return false;
+    }
+  });
+  input_skm?.addEventListener("blur", () => {
+    err_clear();
+    if (!err_massage(input_skm, error_skm, ERROR_MESSAGE.SKM)) {
+      return false;
+    }
+  });
+
+  btn_save?.addEventListener("click", () => {
+    if (
+      err_massage(input_carnum, error_carnum, ERROR_MESSAGE.CARNUM) &&
+      err_massage(input_qty, error_qty, ERROR_MESSAGE.QTY) &&
+      err_massage(input_username, error_username, ERROR_MESSAGE.USERNAME) &&
+      err_massage(input_sdate, error_sdate, ERROR_MESSAGE.SDATE) &&
+      err_massage(input_stime, error_stime, ERROR_MESSAGE.STIME) &&
+      err_massage(input_skm, error_skm, ERROR_MESSAGE.SKM)
+    ) {
+      document.querySelector("form.main").submit();
+    }
+    return false;
+  });
 });

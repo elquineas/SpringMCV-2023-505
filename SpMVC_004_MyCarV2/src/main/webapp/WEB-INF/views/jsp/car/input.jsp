@@ -27,7 +27,4 @@
 		<input name="c_skm" placeholder="출발 Km" value="${CAR.c_skm}"/>
 		<div class="error c_skm"></div>
 	</div>
-	
-	
-	
 </form>

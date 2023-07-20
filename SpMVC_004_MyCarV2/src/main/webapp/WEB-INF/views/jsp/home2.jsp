@@ -36,10 +36,10 @@
 		</ul>
 	</nav>
 	<section class="main">
-		<%@ include file="/WEB-INF/views/car/input.jsp" %>
+		<%@ include file="/WEB-INF/views/jsp/car/input.jsp" %>
 	</section>
 	<footer>
-		<address>CopyRight &copy; callor@callor.com All Right Reserved</address>
+		<address>CopyRight &copy; elquineas@naver.com All Right Reserved</address>
 	</footer>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:layout="http://wwww.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/home}"
+>
+  <header class="main" th:fragment="header">
+    <h1>my car</h1>
+    <p>MY CAR MANAGER 2023</p>
+  </header>
+  <nav class="main" th:fragment="nav">
+    <ul>
+      <li class="home">Home</li>
+      <li class="mycar">내차등록</li>
+      <li class="tacho">차량운행</li>
+      <th:block th:if="${ session.LOGIN_USER == null }">
+        <li class="login">로그인</li>
+        <li class="join">회원가입</li>
+      </th:block>
+      <th:block
+        th:if="${ session.LOGIN_USER != null }"
+        th:with="USER = ${session.LOGIN_USER}"
+      >
+        <li class="logout">로그아웃</li>
+        <li class="mypage" th:text="${ USER.u_name }">마이페이지</li>
+        <li th:if="${ USER.u_role == 'ADMIN' }" class="admin">관리자</li>
+      </th:block>
+    </ul>
+  </nav>
+
+  <footer th:fragment="footer">
+    <address>CopyRight &copy; elquineas@naver.com All Right Reserved</address>
+  </footer>
+</html>
