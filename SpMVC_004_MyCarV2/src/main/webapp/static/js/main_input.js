@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const carnum = input_carnum.value;
     const res = await fetch(`${rootPath}/car_check?carnum=${carnum}`);
-    console.log();
     const json = await res.json();
     if (json.c_carnum === "NOT") {
       error_carnum.classList.add("on");
