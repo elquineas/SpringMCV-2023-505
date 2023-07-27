@@ -1,0 +1,46 @@
+@charset "UTF-8";
+table,
+div.list {
+  width: 80%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+th,
+td {
+  text-align: left;
+  white-space: nowrap;
+}
+tr:nth-of-type(odd) {
+  background-color: #ddd;
+}
+tr:nth-of-type(even) {
+  background-color: #eee;
+}
+tr:hover {
+  background-color: #ccc;
+}
+div.pagination {
+}
+div.pagination ul {
+  width: 40%;
+  list-style: none;
+  display: flex;
+  margin: 0 auto;
+}
+div.pagination li {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  margin: 2px;
+  border: 1px solid skyblue;
+  border-radius: 3px;
+}
+div.pagination li.temp {
+  border: 1px solid transparent;
+}
+div.pagination li.active {
+  background-color: #ececec;
+  color: mediumseagreen;
+  font-weight: bold;
+  /* font-size: 1.2rem; */
+}
