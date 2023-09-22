@@ -81,7 +81,6 @@
 	</div>
 	<div class="list book search">
 		<form>
-			<input name="page" hidden="hidden" value="${PAGE}"/>
 			<input name="search" placeholder="검색어 입력후 Enter" value="${SEARCH}"/>
 			<button>검색</button>
 		</form>
