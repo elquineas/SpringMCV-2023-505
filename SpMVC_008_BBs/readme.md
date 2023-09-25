@@ -61,3 +61,9 @@
 ## login 한 사용자에게 권한 부여하기
 - Spring Security 에서는 로그인과 함께 권한을 검사하는 기능이 포함되어 있다.
 - login 한 사용자의 Token 을 발행할때 `ROLE_권한` 을 포함하여 특정한 URL에 대하여 권한을 검사할수 있다.
+
+## DB 연결정보 암호화 하기
+- DataSource 에 설정된 username 과 password 는 github 등에 프로젝트가 업로드 되면, 외부에 노출이 되고, 
+  외부에 노출이 되면 보안에 치명적인 문제를 일으킬수 있다.
+- DataSoutce 정보를 github에 업로드 되지 않도록 .gitignore 에 등록하면 될 것이다.
+- Spring security 프로젝트 에서는 username 과 password 를 암호화 하여 사용한다.
